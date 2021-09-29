@@ -1,37 +1,106 @@
-## Welcome to GitHub Pages
+## [Trang chủ](https://ppap-1264589.github.io/interesting-solution)
 
-You can use the [editor on GitHub](https://github.com/ppap-1264589/MST/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## MST [MST - E.pdf](https://github.com/ppap-1264589/MST/files/7250697/MST.-.E.pdf)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### [Bài Toán](https://github.com/ppap-1264589/Bitmasking/files/6962415/FRIENDS.pdf)
 
-### Markdown
+### [Lời giải]
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Code:
 
-```markdown
-Syntax highlighted code block
+```C++
+#include <bits/stdc++.h>
+#pragma GCC optimize("Ofast")
+#pragma GCC optimize ("unroll-loops")
+#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx,tune=native")
 
-# Header 1
-## Header 2
-### Header 3
+#define Task            "A"                                 ///map of knowledge
+#define ll              long long                           //+ Binary Lifting
+#define bit(x,i)        ((x >> i) & 1)                      //+ Hash Table
+#define stt(x,i)        (x & (1 << i))                      //+ Trie Tree
+#define trail0(x)       (x & (-x))                          //+ Sparse Table - RMQ
+#define up(i,a,b)       for (int i = (a); i <= (b); i++)    //+ Matrix
+#define down(i,a,b)     for (int i = (a); i >= (b); i--)    //+ DSU
+#define MOD             1000000007                          //+ Joints - Bridges
+#define base            311                                 //+ SCC
+#define pii             pair<int, int>                      //+ Z-KMP
+#define f               first
+#define s               second
+#define pb              push_back
+#define ep              emplace_back
+using namespace std;
 
-- Bulleted
-- List
+const int maxn = 501;
+struct edge{
+    int u,v,w;
+};
+vector<edge> E;
+int par[maxn];
+int n,m;
+int dem;
 
-1. Numbered
-2. List
+int root(int u){
+    if (par[u] == 0) return u;
+    int x = root(par[u]);
+    par[u] = x;
+    return x;
+}
 
-**Bold** and _Italic_ and `Code` text
+bool Union(int u, int v){
+    u = root(u);
+    v = root(v);
+    if (u != v){
+        par[u] = v;
+        return true;
+    }
+    return false;
+}
 
-[Link](url) and ![Image](src)
+bool cmp(edge& x, edge& y){
+    return (x.w < y.w);
+}
+
+void Kruskal(){
+    memset(par, 0, sizeof(par));
+
+    int sum = 0;
+    vector<edge> vt;
+    for (edge e : E){
+        int u = e.u;
+        int v = e.v;
+        int w = e.w;
+        if (Union(u, v)){
+            sum += w;
+            vt.pb(e);
+        }
+    }
+    E.assign(vt.begin(), vt.end());
+    if ((int)E.size() != n-1) cout << -1;
+    else cout << sum;
+    cout << "\n";
+}
+
+signed main (){
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    cout.tie(0);
+    if (fopen(Task".inp", "r")){
+        freopen (Task".inp", "r", stdin);
+        freopen (Task".out", "w", stdout);
+    }
+
+    cin >> n >> m;
+    up(i, 1, m){
+        int u,v,w;
+        cin >> u >> v >> w;
+        E.insert(E.begin(), {u, v, w});
+        for (int i = 0; i < (int)E.size()-1; i++){
+            if (E[i].w > E[i+1].w) swap(E[i], E[i+1]);
+            else break;
+        } // Optimize algorithm by Insertion sort
+        Kruskal();
+    }
+
+    return 0;
+}
 ```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/ppap-1264589/MST/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
