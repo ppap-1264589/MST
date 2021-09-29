@@ -1,8 +1,8 @@
 ## [Trang chủ](https://ppap-1264589.github.io/interesting-solution)
 
-##[MST - E.pdf](https://github.com/ppap-1264589/MST/files/7250697/MST.-.E.pdf)
+## MST
 
-### [Bài Toán](https://github.com/ppap-1264589/Bitmasking/files/6962415/FRIENDS.pdf)
+### [Bài Toán](https://github.com/ppap-1264589/MST/files/7250697/MST.-.E.pdf)
 
 ### [Lời giải]
 
