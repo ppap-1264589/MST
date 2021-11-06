@@ -8,7 +8,7 @@
 
 ### Code:
 
-```C++
+```c++
 #include <bits/stdc++.h>
 #pragma GCC optimize("Ofast")
 #pragma GCC optimize ("unroll-loops")
